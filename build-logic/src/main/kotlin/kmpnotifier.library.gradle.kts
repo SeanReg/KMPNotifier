@@ -49,7 +49,11 @@ kotlin {
         binaries.library()
     }
 
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -75,13 +79,15 @@ configure<MavenPublishBaseExtension> {
             sourcesJar = true
         )
     )
+
     coordinates(
-        "io.github.mirzemehdi",
+        "io.github.seanregan",
         project.name,
         project.properties["kmpNotifierVersion"] as String
     )
+
     pom {
-        url = "https://github.com/mirzemehdi/KMPNotifier/"
+        url = "https://github.com/SeanReg/KMPNotifier/"
         licenses {
             license {
                 name.set("Apache-2.0")
@@ -95,18 +101,34 @@ configure<MavenPublishBaseExtension> {
             }
         }
         scm {
-            connection.set("https://github.com/mirzemehdi/KMPNotifier.git")
-            url.set("https://github.com/mirzemehdi/KMPNotifier")
+            connection.set("https://github.com/SeanReg/KMPNotifier.git")
+            url.set("https://github.com/SeanReg/KMPNotifier")
         }
         issueManagement {
             system.set("Github")
-            url.set("https://github.com/mirzemehdi/KMPNotifier/issues")
+            url.set("https://github.com/SeanReg/KMPNotifier/issues")
         }
     }
 
-    publishToMavenCentral()
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
 
-    if (!project.gradle.startParameter.taskNames.any { it.contains("publishToMavenLocal") }) {
+    if (
+        !project.gradle.startParameter.taskNames.any { it.contains("publishToMavenLocal") } &&
+        project.hasProperty("signing.keyId") &&
+        project.hasProperty("signing.password") &&
+        project.hasProperty("signing.secretKeyRingFile")
+    ) {
         signAllPublications()
     }
 }
