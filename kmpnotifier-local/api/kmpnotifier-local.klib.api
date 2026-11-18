@@ -22,10 +22,12 @@ abstract interface com.mmk.kmpnotifier.notification/Notifier { // com.mmk.kmpnot
 }
 
 final class com.mmk.kmpnotifier.notification/NotificationAction { // com.mmk.kmpnotifier.notification/NotificationAction|null[0]
-    constructor <init>(kotlin/String, kotlin/String, kotlin/Boolean = ..., kotlin/String? = ...) // com.mmk.kmpnotifier.notification/NotificationAction.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean;kotlin.String?){}[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ...) // com.mmk.kmpnotifier.notification/NotificationAction.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean;kotlin.String?;kotlin.String?){}[0]
 
     final val allowsTextInput // com.mmk.kmpnotifier.notification/NotificationAction.allowsTextInput|{}allowsTextInput[0]
         final fun <get-allowsTextInput>(): kotlin/Boolean // com.mmk.kmpnotifier.notification/NotificationAction.allowsTextInput.<get-allowsTextInput>|<get-allowsTextInput>(){}[0]
+    final val androidLaunchActivity // com.mmk.kmpnotifier.notification/NotificationAction.androidLaunchActivity|{}androidLaunchActivity[0]
+        final fun <get-androidLaunchActivity>(): kotlin/String? // com.mmk.kmpnotifier.notification/NotificationAction.androidLaunchActivity.<get-androidLaunchActivity>|<get-androidLaunchActivity>(){}[0]
     final val id // com.mmk.kmpnotifier.notification/NotificationAction.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.mmk.kmpnotifier.notification/NotificationAction.id.<get-id>|<get-id>(){}[0]
     final val inputLabel // com.mmk.kmpnotifier.notification/NotificationAction.inputLabel|{}inputLabel[0]
@@ -37,7 +39,8 @@ final class com.mmk.kmpnotifier.notification/NotificationAction { // com.mmk.kmp
     final fun component2(): kotlin/String // com.mmk.kmpnotifier.notification/NotificationAction.component2|component2(){}[0]
     final fun component3(): kotlin/Boolean // com.mmk.kmpnotifier.notification/NotificationAction.component3|component3(){}[0]
     final fun component4(): kotlin/String? // com.mmk.kmpnotifier.notification/NotificationAction.component4|component4(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., kotlin/String? = ...): com.mmk.kmpnotifier.notification/NotificationAction // com.mmk.kmpnotifier.notification/NotificationAction.copy|copy(kotlin.String;kotlin.String;kotlin.Boolean;kotlin.String?){}[0]
+    final fun component5(): kotlin/String? // com.mmk.kmpnotifier.notification/NotificationAction.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ...): com.mmk.kmpnotifier.notification/NotificationAction // com.mmk.kmpnotifier.notification/NotificationAction.copy|copy(kotlin.String;kotlin.String;kotlin.Boolean;kotlin.String?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // com.mmk.kmpnotifier.notification/NotificationAction.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.mmk.kmpnotifier.notification/NotificationAction.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.mmk.kmpnotifier.notification/NotificationAction.toString|toString(){}[0]

@@ -14,16 +14,18 @@ public final class com/mmk/kmpnotifier/local/LocalNotificationsKt {
 }
 
 public final class com/mmk/kmpnotifier/notification/NotificationAction {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Z
 	public final fun component4 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lcom/mmk/kmpnotifier/notification/NotificationAction;
-	public static synthetic fun copy$default (Lcom/mmk/kmpnotifier/notification/NotificationAction;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ILjava/lang/Object;)Lcom/mmk/kmpnotifier/notification/NotificationAction;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;)Lcom/mmk/kmpnotifier/notification/NotificationAction;
+	public static synthetic fun copy$default (Lcom/mmk/kmpnotifier/notification/NotificationAction;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/mmk/kmpnotifier/notification/NotificationAction;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowsTextInput ()Z
+	public final fun getAndroidLaunchActivity ()Ljava/lang/String;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getInputLabel ()Ljava/lang/String;
 	public final fun getTitle ()Ljava/lang/String;
