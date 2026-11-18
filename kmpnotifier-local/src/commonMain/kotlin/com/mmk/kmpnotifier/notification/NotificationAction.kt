@@ -15,5 +15,7 @@ public data class NotificationAction(
     val title: String,
 
     val allowsTextInput: Boolean = false,
-    val inputLabel: String? = null
+    val inputLabel: String? = null,
+
+    val androidLaunchActivity: String? = null
 )

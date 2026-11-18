@@ -72,7 +72,8 @@ internal class AndroidNotificationPoster(
                     createActionPendingIntent(
                         actionId = action.id,
                         notificationId = builder.id,
-                        payload = builder.payloadData
+                        payload = builder.payloadData,
+                        androidLaunchActivity = action.androidLaunchActivity
                     )
 
                 val actionBuilder = NotificationCompat.Action.Builder(
@@ -119,19 +120,44 @@ internal class AndroidNotificationPoster(
     private fun createActionPendingIntent(
         actionId: String,
         notificationId: Int,
-        payload: Map<String, String>
+        payload: Map<String, String>,
+        androidLaunchActivity: String?
     ): PendingIntent {
 
-        val intent = Intent(context, NotificationReceiver::class.java).apply {
-            action = ACTION_NOTIFICATION_ACTION
-            putExtra(EXTRA_ACTION_ID, actionId)
-            putExtra(EXTRA_NOTIFICATION_ID, notificationId)
-            payload.forEach { putExtra(it.key, it.value) }
+        if (androidLaunchActivity == null) {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_NOTIFICATION_ACTION
+                putExtra(EXTRA_ACTION_ID, actionId)
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+                payload.forEach { putExtra(it.key, it.value) }
+            }
+
+
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or FLAG_MUTABLE
+            return PendingIntent.getBroadcast(
+                context,
+                (actionId + notificationId).hashCode(),
+                intent,
+                flags
+            )
+        } else {
+            val intent = Intent().apply {
+                setClassName(context.packageName, androidLaunchActivity)
+                action = ACTION_NOTIFICATION_ACTION
+                putExtra(EXTRA_ACTION_ID, actionId)
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+                payload.forEach { putExtra(it.key, it.value) }
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            }
+
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or FLAG_MUTABLE
+            return PendingIntent.getActivity(
+                context,
+                (actionId + notificationId).hashCode(),
+                intent,
+                flags
+            )
         }
-
-
-        val flags = PendingIntent.FLAG_UPDATE_CURRENT or FLAG_MUTABLE
-        return PendingIntent.getBroadcast(context, (actionId + notificationId).hashCode(), intent, flags)
     }
 
     private suspend fun NotificationImage?.asBitmap(): Bitmap? {
