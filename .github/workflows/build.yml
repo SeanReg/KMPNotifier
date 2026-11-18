@@ -6,6 +6,10 @@ on:
       - 'v*'
     paths-ignore:
       - '**/README.md'
+      # Skip re-running the whole build when the update-api.yml workflow
+      # auto-commits regenerated binary-compatibility-validator dumps.
+      - '**/api/**'
+      - '**/api/*.api'
   pull_request:
     branches: [ "main", "rel_v*", "kmp-2.0/**" ]
 
